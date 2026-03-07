@@ -1,15 +1,16 @@
 package com.example.desafio.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
+@Table(name = "tb_aluno")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,5 +22,7 @@ public class Aluno {
     private String matricula;
     private Integer cr;
 
+    @OneToMany(mappedBy = "aluno")
+    private List<AlunoDisciplina> alunoDisciplina = new ArrayList<>();
 
 }

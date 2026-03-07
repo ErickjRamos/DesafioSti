@@ -1,16 +1,17 @@
 package com.example.desafio.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
+@Table(name = "tb_aluno_disciplina")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,4 +22,10 @@ public class AlunoDisciplina {
     private Long id;
     private Integer notaAluno;
     private String anoSemestre;
+    @ManyToOne
+    @JoinColumn(name = "disciplina_id")
+    private Disciplina disciplina;
+    @ManyToOne
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
 }
