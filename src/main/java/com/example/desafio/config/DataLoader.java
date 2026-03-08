@@ -14,18 +14,12 @@ public class DataLoader implements CommandLineRunner {
     private final CsvService csvService;
     private final ImportacaoService importacaoService;
 
+
     public DataLoader(CsvService csvService, ImportacaoService importacaoService) {
         this.csvService = csvService;
         this.importacaoService = importacaoService;
     }
-/*
-    @Override
-    public void run(String... args) throws Exception {
 
-        var dados = csvService.lerCsv("src/main/resources/notas.csv");
-
-        importacaoService.importar(dados);
-    }*/
 @Override
 public void run(String... args) throws Exception {
 
