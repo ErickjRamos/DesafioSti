@@ -1,7 +1,9 @@
 package com.example.desafio.DTO;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -16,7 +18,6 @@ public class NotaCsvDTO {
     private String anoSemestre;
 
     public NotaCsvDTO(String matricula, String codigoDisciplina, String codigoCurso, Integer nota, Integer cargaHoraria, String anoSemestre) {
-
         this.matricula = matricula;
         this.codigoDisciplina = codigoDisciplina;
         this.codigoCurso = codigoCurso;
@@ -24,6 +25,4 @@ public class NotaCsvDTO {
         this.cargaHoraria = cargaHoraria;
         this.anoSemestre = anoSemestre;
     }
-
-    // getters
 }

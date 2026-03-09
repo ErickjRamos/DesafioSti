@@ -1,5 +1,4 @@
 package com.example.desafio.service;
-
 import com.example.desafio.DTO.NotaCsvDTO;
 import com.example.desafio.Repository.AlunoDisciplinaRepository;
 import com.example.desafio.Repository.AlunoRepository;
@@ -11,7 +10,6 @@ import com.example.desafio.entities.Curso;
 import com.example.desafio.entities.Disciplina;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

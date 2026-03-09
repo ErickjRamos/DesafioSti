@@ -1,9 +1,7 @@
 package com.example.desafio.service;
-
 import com.example.desafio.DTO.NotaCsvDTO;
 import com.opencsv.CSVReader;
 import org.springframework.stereotype.Service;
-
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;

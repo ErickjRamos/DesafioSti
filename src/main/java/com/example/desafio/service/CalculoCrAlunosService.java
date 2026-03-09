@@ -1,29 +1,25 @@
 package com.example.desafio.service;
-
 import com.example.desafio.Repository.AlunoDisciplinaRepository;
 import com.example.desafio.Repository.AlunoRepository;
-import com.example.desafio.entities.Aluno;
+import com.example.desafio.entities.AlunoDisciplina;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class CalculoCrAlunosService {
 
     private final AlunoDisciplinaRepository alunoDisciplinaRepository;
     private final AlunoRepository alunoRepository;
 
-    public CalculoCrAlunosService(AlunoDisciplinaRepository alunoDisciplinaRepository,
-                                  AlunoRepository alunoRepository) {
-        this.alunoDisciplinaRepository = alunoDisciplinaRepository;
-        this.alunoRepository = alunoRepository;
-    }
-
+    @Transactional
     public void calcularESalvarCrAlunos() {
 
-        var registros = alunoDisciplinaRepository.findAll();
+        List<AlunoDisciplina> registros = alunoDisciplinaRepository.findAll();
         registros.stream()
                 .collect(Collectors.groupingBy(ad -> ad.getAluno()))
                 .forEach((aluno, lista) -> {
