@@ -21,7 +21,7 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String codigoCurso;
-    private String MediaCr;
+    private Integer MediaCr;
     @OneToMany(mappedBy = "curso")
     private List<Disciplina> disciplinas = new ArrayList<>();
 
