@@ -10,6 +10,8 @@ import com.example.desafio.entities.Curso;
 import com.example.desafio.entities.Disciplina;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +26,7 @@ public class PersistirCsvService {
     private final AlunoRepository alunoRepository;
     private final AlunoDisciplinaRepository alunoDisciplinaRepository;
 
+    @Transactional
     public void importar(List<NotaCsvDTO> dados) {
 
         Map<String, Curso> cursos = new HashMap<>();

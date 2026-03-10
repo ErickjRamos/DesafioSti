@@ -1,4 +1,5 @@
 package com.example.desafio.services;
+import com.example.desafio.entities.Aluno;
 import com.example.desafio.repositories.AlunoDisciplinaRepository;
 import com.example.desafio.repositories.AlunoRepository;
 import com.example.desafio.entities.AlunoDisciplina;
@@ -6,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +19,8 @@ public class CalcularCrAlunosService {
     private final AlunoRepository alunoRepository;
 
     @Transactional
-    public void calcularESalvarCrAlunos() {
-
+    public List<Aluno> calcularESalvarCrAlunos() {
+        List<Aluno> alunosCalculados = new ArrayList<>();
         List<AlunoDisciplina> registros = alunoDisciplinaRepository.findAll();
         registros.stream()
                 .collect(Collectors.groupingBy(ad -> ad.getAluno()))
@@ -40,8 +42,9 @@ public class CalcularCrAlunosService {
                     cr = Math.max(0, Math.min(100, cr));
 
                     aluno.setCr(cr);
-
+                    alunosCalculados.add(aluno);
                     alunoRepository.save(aluno);
                 });
+        return alunosCalculados;
     }
 }
