@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,8 +22,8 @@ public class CalcularCrCursosService {
     private final CursoRepository cursoRepository;
 
     @Transactional
-    public void calcularESalvarCrCursos() {
-
+    public  List<Curso> calcularESalvarCrCursos() {
+        List<Curso> cursosCalculados = new ArrayList<>();
         List<AlunoDisciplina> registros = alunoDisciplinaRepository.findAll();
 
         Map<Curso, Set<Aluno>> alunosPorCurso =
@@ -47,6 +48,9 @@ public class CalcularCrCursosService {
             curso.setMediaCr(crFinal);
 
             cursoRepository.save(curso);
+            cursosCalculados.add(curso);
+
         });
+    return cursosCalculados;
     }
 }
