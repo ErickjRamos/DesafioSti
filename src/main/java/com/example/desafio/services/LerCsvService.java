@@ -1,4 +1,4 @@
-package com.example.desafio.service;
+package com.example.desafio.services;
 import com.example.desafio.DTO.NotaCsvDTO;
 import com.opencsv.CSVReader;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CsvService {
+public class LerCsvService {
 
     public List<NotaCsvDTO> lerCsv(String caminho) throws Exception {
 

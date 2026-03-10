@@ -1,9 +1,9 @@
-package com.example.desafio.service;
+package com.example.desafio.services;
 import com.example.desafio.DTO.NotaCsvDTO;
-import com.example.desafio.Repository.AlunoDisciplinaRepository;
-import com.example.desafio.Repository.AlunoRepository;
-import com.example.desafio.Repository.CursoRepository;
-import com.example.desafio.Repository.DisciplinaRepository;
+import com.example.desafio.repositories.AlunoDisciplinaRepository;
+import com.example.desafio.repositories.AlunoRepository;
+import com.example.desafio.repositories.CursoRepository;
+import com.example.desafio.repositories.DisciplinaRepository;
 import com.example.desafio.entities.Aluno;
 import com.example.desafio.entities.AlunoDisciplina;
 import com.example.desafio.entities.Curso;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class ImportacaoService {
+public class PersistirCsvService {
 
     private final CursoRepository cursoRepository;
     private final DisciplinaRepository disciplinaRepository;

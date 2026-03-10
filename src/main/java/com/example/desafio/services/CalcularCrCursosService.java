@@ -1,6 +1,6 @@
-package com.example.desafio.service;
-import com.example.desafio.Repository.AlunoDisciplinaRepository;
-import com.example.desafio.Repository.CursoRepository;
+package com.example.desafio.services;
+import com.example.desafio.repositories.AlunoDisciplinaRepository;
+import com.example.desafio.repositories.CursoRepository;
 import com.example.desafio.entities.Aluno;
 import com.example.desafio.entities.AlunoDisciplina;
 import com.example.desafio.entities.Curso;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CalculoCrCursosService {
+public class CalcularCrCursosService {
 
     private final AlunoDisciplinaRepository alunoDisciplinaRepository;
     private final CursoRepository cursoRepository;

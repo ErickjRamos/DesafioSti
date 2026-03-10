@@ -1,4 +1,4 @@
-package com.example.desafio.Repository;
+package com.example.desafio.repositories;
 import com.example.desafio.entities.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
