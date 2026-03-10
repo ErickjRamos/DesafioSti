@@ -1,5 +1,5 @@
 package com.example.desafio.services;
-import com.example.desafio.DTO.NotaCsvDTO;
+import com.example.desafio.dto.NotaCsvDTO;
 import com.example.desafio.repositories.AlunoDisciplinaRepository;
 import com.example.desafio.repositories.AlunoRepository;
 import com.example.desafio.repositories.CursoRepository;

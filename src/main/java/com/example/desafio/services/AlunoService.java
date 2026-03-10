@@ -1,11 +1,13 @@
 package com.example.desafio.services;
+import com.example.desafio.dto.ResponseAlunoDto;
 import com.example.desafio.entities.Aluno;
+import com.example.desafio.mappers.AlunoMapper;
 import com.example.desafio.repositories.AlunoDisciplinaRepository;
 import com.example.desafio.repositories.AlunoRepository;
 import com.example.desafio.entities.AlunoDisciplina;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +15,19 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CalcularCrAlunosService {
+public class AlunoService {
 
     private final AlunoDisciplinaRepository alunoDisciplinaRepository;
     private final AlunoRepository alunoRepository;
+
+    @Transactional(readOnly = true)
+    public List<ResponseAlunoDto> exibirAlunos(){
+        return alunoRepository.findAll()
+                .stream()
+                .map(aluno -> AlunoMapper.converterParaDto(aluno))
+                .collect(Collectors.toList());
+    }
+
 
     @Transactional
     public List<Aluno> calcularESalvarCrAlunos() {

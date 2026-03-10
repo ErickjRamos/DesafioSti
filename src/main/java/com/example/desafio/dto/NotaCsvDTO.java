@@ -1,4 +1,4 @@
-package com.example.desafio.DTO;
+package com.example.desafio.dto;
 
 
 import lombok.AllArgsConstructor;
