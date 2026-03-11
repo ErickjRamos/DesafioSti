@@ -1,4 +1,5 @@
 package com.example.desafio.services;
+
 import com.example.desafio.repositories.AlunoDisciplinaRepository;
 import com.example.desafio.repositories.CursoRepository;
 import com.example.desafio.entities.Aluno;
@@ -22,7 +23,7 @@ public class CursoService {
     private final CursoRepository cursoRepository;
 
     @Transactional
-    public  List<Curso> calcularESalvarCrCursos() {
+    public List<Curso> calcularESalvarCrCursos() {
         List<Curso> cursosCalculados = new ArrayList<>();
         List<AlunoDisciplina> registros = alunoDisciplinaRepository.findAll();
 
@@ -38,7 +39,8 @@ public class CursoService {
 
         alunosPorCurso.forEach((curso, alunos) -> {
 
-            double media = alunos.stream()
+            double media = alunos
+                    .stream()
                     .mapToInt(Aluno::getCr)
                     .average()
                     .orElse(0);
@@ -51,6 +53,6 @@ public class CursoService {
             cursosCalculados.add(curso);
 
         });
-    return cursosCalculados;
+        return cursosCalculados;
     }
 }

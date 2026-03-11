@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class NotaCsvDTO {
+public class AtributosNotaDTO {
 
     private String matricula;
     private String codigoDisciplina;

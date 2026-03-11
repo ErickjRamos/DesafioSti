@@ -1,5 +1,5 @@
 package com.example.desafio.services;
-import com.example.desafio.dto.NotaCsvDTO;
+import com.example.desafio.dto.AtributosNotaDTO;
 import com.example.desafio.repositories.AlunoDisciplinaRepository;
 import com.example.desafio.repositories.AlunoRepository;
 import com.example.desafio.repositories.CursoRepository;
@@ -27,7 +27,7 @@ public class PersistirCsvService {
     private final AlunoDisciplinaRepository alunoDisciplinaRepository;
 
     @Transactional
-    public void importar(List<NotaCsvDTO> dados) {
+    public void importar(List<AtributosNotaDTO> dados) {
 
         Map<String, Curso> cursos = new HashMap<>();
         Map<String, Disciplina> disciplinas = new HashMap<>();
@@ -35,12 +35,12 @@ public class PersistirCsvService {
 
         List<AlunoDisciplina> historicos = new ArrayList<>();
 
-        for (NotaCsvDTO dto : dados) {
+        for (AtributosNotaDTO dto : dados) {
 
             Curso curso = cursos.computeIfAbsent(dto.getCodigoCurso(), codigo -> {
                 Curso c = new Curso();
                 c.setCodigoCurso(codigo);
-                return cursoRepository.save(c);
+                return c;
             });
 
             Disciplina disciplina = disciplinas.computeIfAbsent(dto.getCodigoDisciplina(), codigo -> {
@@ -48,13 +48,13 @@ public class PersistirCsvService {
                 d.setCodigoDisciplina(codigo);
                 d.setCargaHoraria(dto.getCargaHoraria());
                 d.setCurso(curso);
-                return disciplinaRepository.save(d);
+                return d;
             });
 
             Aluno aluno = alunos.computeIfAbsent(dto.getMatricula(), matricula-> {
                 Aluno a = new Aluno();
                 a.setMatricula(matricula);
-                return alunoRepository.save(a);
+                return a;
             });
 
             AlunoDisciplina ad = new AlunoDisciplina();
@@ -66,7 +66,9 @@ public class PersistirCsvService {
 
             historicos.add(ad);
         }
-
+        alunoRepository.saveAll(alunos.values());
+        disciplinaRepository.saveAll(disciplinas.values());
+        cursoRepository.saveAll(cursos.values());
         alunoDisciplinaRepository.saveAll(historicos);
     }
 }

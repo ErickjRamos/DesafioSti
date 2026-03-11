@@ -1,10 +1,11 @@
-package com.example.desafio.services;
-import com.example.desafio.dto.ResponseAlunoDto;
+package com.example.desafio.services.impl;
+import com.example.desafio.dto.ResponseAlunoDTO;
 import com.example.desafio.entities.Aluno;
 import com.example.desafio.mappers.AlunoMapper;
 import com.example.desafio.repositories.AlunoDisciplinaRepository;
 import com.example.desafio.repositories.AlunoRepository;
 import com.example.desafio.entities.AlunoDisciplina;
+import com.example.desafio.services.AlunoService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,13 +16,13 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class AlunoService {
+public class AlunoServiceImpl implements AlunoService {
 
     private final AlunoDisciplinaRepository alunoDisciplinaRepository;
     private final AlunoRepository alunoRepository;
 
     @Transactional(readOnly = true)
-    public List<ResponseAlunoDto> exibirAlunos(){
+    public List<ResponseAlunoDTO> exibirAlunos(){
         return alunoRepository.findAll()
                 .stream()
                 .map(aluno -> AlunoMapper.converterParaDto(aluno))
@@ -50,7 +51,7 @@ public class AlunoService {
 
                     int cr = (int) Math.round(somaNotasPeso / somaCarga);
 
-                    cr = Math.max(0, Math.min(100, cr));
+                 //  cr = Math.max(0, Math.min(100, cr));
 
                     aluno.setCr(cr);
                     alunosCalculados.add(aluno);

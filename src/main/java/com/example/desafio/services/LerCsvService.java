@@ -1,5 +1,5 @@
 package com.example.desafio.services;
-import com.example.desafio.dto.NotaCsvDTO;
+import com.example.desafio.dto.AtributosNotaDTO;
 import com.opencsv.CSVReader;
 import org.springframework.stereotype.Service;
 import java.io.FileReader;
@@ -9,9 +9,9 @@ import java.util.List;
 @Service
 public class LerCsvService {
 
-    public List<NotaCsvDTO> lerCsv(String caminho) throws Exception {
+    public List<AtributosNotaDTO> lerCsv(String caminho) throws Exception {
 
-        List<NotaCsvDTO> lista = new ArrayList<>();
+        List<AtributosNotaDTO> lista = new ArrayList<>();
 
         try (CSVReader reader = new CSVReader(new FileReader(caminho))) {
 
@@ -21,7 +21,7 @@ public class LerCsvService {
 
                 String[] l = linhas.get(i);
 
-                NotaCsvDTO dto = new NotaCsvDTO(l[0] , l[1], l[2], Integer.parseInt(l[3]), Integer.parseInt(l[4]), l[5]);
+                AtributosNotaDTO dto = new AtributosNotaDTO(l[0] , l[1], l[2], Integer.parseInt(l[3]), Integer.parseInt(l[4]), l[5]);
 
                 lista.add(dto);
             }
