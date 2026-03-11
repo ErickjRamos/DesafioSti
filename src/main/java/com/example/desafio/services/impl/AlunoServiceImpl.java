@@ -18,45 +18,27 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AlunoServiceImpl implements AlunoService {
 
-    private final AlunoDisciplinaRepository alunoDisciplinaRepository;
     private final AlunoRepository alunoRepository;
 
-    @Transactional(readOnly = true)
-    public List<ResponseAlunoDTO> exibirAlunos(){
-        return alunoRepository.findAll()
+    public List<Aluno> calcularCrAlunos() {
+        return alunoRepository.findAllWithCalculatedCr()
                 .stream()
-                .map(aluno -> AlunoMapper.converterParaDto(aluno))
-                .collect(Collectors.toList());
+                .map(row -> {
+                    Aluno aluno = (Aluno) row[0];
+                    aluno.setCr(((Number) row[1]).intValue());
+                    return aluno;
+                })
+                .toList();
     }
 
+    @Transactional
+    public void salvarCrAlunos() {
+        alunoRepository.updateCrForAllAlunos();
+    }
 
     @Transactional
     public List<Aluno> calcularESalvarCrAlunos() {
-        List<Aluno> alunosCalculados = new ArrayList<>();
-        List<AlunoDisciplina> registros = alunoDisciplinaRepository.findAll();
-        registros.stream()
-                .collect(Collectors.groupingBy(ad -> ad.getAluno()))
-                .forEach((aluno, lista) -> {
-
-                    double somaNotasPeso = lista.stream()
-                            .mapToDouble(ad ->
-                                    ad.getNotaAluno() *
-                                            ad.getDisciplina().getCargaHoraria())
-                            .sum();
-
-                    double somaCarga = lista.stream()
-                            .mapToInt(ad ->
-                                    ad.getDisciplina().getCargaHoraria())
-                            .sum();
-
-                    int cr = (int) Math.round(somaNotasPeso / somaCarga);
-
-                 //  cr = Math.max(0, Math.min(100, cr));
-
-                    aluno.setCr(cr);
-                    alunosCalculados.add(aluno);
-                    alunoRepository.save(aluno);
-                });
-        return alunosCalculados;
+        salvarCrAlunos();
+        return calcularCrAlunos();
     }
 }

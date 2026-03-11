@@ -15,12 +15,12 @@ import java.util.List;
 @AllArgsConstructor
 public class AlunoController {
     private final AlunoService alunoService;
-
+/*
     @GetMapping("/alunos")
     public ResponseEntity<List<ResponseAlunoDTO>> exibirAlunos() {
         return ResponseEntity.ok(alunoService.exibirAlunos());
     }
-
+*/
 
 
 }

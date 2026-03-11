@@ -3,6 +3,7 @@ package com.example.desafio.config;
 import com.example.desafio.dto.AtributosNotaDTO;
 import com.example.desafio.entities.Aluno;
 import com.example.desafio.entities.Curso;
+import com.example.desafio.services.AlunoService;
 import com.example.desafio.services.impl.AlunoServiceImpl;
 import com.example.desafio.services.CursoService;
 import com.example.desafio.services.LerCsvService;
@@ -19,7 +20,7 @@ public class DataLoader implements CommandLineRunner {
 
     private final LerCsvService lerCsvService;
     private final PersistirCsvService persistirCsvService;
-    private final AlunoServiceImpl alunoServiceImpl;
+    private final AlunoService alunoService;
     private final CursoService cursoService;
 
     @Override
@@ -29,7 +30,7 @@ public class DataLoader implements CommandLineRunner {
         List<AtributosNotaDTO> dados = lerCsvService.lerCsv("src/main/resources/notas.csv");
 
         persistirCsvService.importar(dados);
-        alunosCalculados = alunoServiceImpl.calcularESalvarCrAlunos();
+        alunosCalculados = alunoService.calcularESalvarCrAlunos();
         cursosCalculados = cursoService.calcularESalvarCrCursos();
 
         System.out.println("------- O CR dos alunos é: -------");
