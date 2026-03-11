@@ -4,8 +4,8 @@ import com.example.desafio.dto.AtributosNotaDTO;
 import com.example.desafio.entities.Aluno;
 import com.example.desafio.entities.Curso;
 import com.example.desafio.services.AlunoService;
-import com.example.desafio.services.impl.AlunoServiceImpl;
 import com.example.desafio.services.CursoService;
+import com.example.desafio.services.impl.CursoServiceImpl;
 import com.example.desafio.services.LerCsvService;
 import com.example.desafio.services.PersistirCsvService;
 import lombok.AllArgsConstructor;
@@ -31,7 +31,7 @@ public class DataLoader implements CommandLineRunner {
 
         persistirCsvService.importar(dados);
         alunosCalculados = alunoService.calcularCrAlunos();
-        cursosCalculados = cursoService.calcularESalvarCrCursos();
+        cursosCalculados = cursoService.calcularCrCursos();
 
         System.out.println("------- O CR dos alunos é: -------");
         for (Aluno aluno : alunosCalculados) {

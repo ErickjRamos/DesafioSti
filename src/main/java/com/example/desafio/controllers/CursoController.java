@@ -1,5 +1,6 @@
 package com.example.desafio.controllers;
 import com.example.desafio.services.CursoService;
+import com.example.desafio.services.impl.CursoServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ public class CursoController {
 
     @GetMapping("/cursos")
     public ResponseEntity<Void> calcularCrCursos() {
-        cursoService.calcularESalvarCrCursos();
+        cursoService.calcularCrCursos();
         return ResponseEntity.ok().build();
     }
 }
