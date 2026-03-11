@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
     Optional<Aluno> findByMatricula(Long matricula);
-
+/*
     @Query("""
         SELECT a, ROUND(SUM(ad.notaAluno * d.cargaHoraria) / SUM(d.cargaHoraria))
         FROM Aluno a
@@ -34,4 +34,19 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
         )
     """)
     int updateCrForAllAlunos();
+    */
+@Modifying
+@Query("""
+    UPDATE Aluno a
+    SET a.cr = (
+        SELECT ROUND(SUM(ad.notaAluno * d.cargaHoraria) / SUM(d.cargaHoraria))
+        FROM AlunoDisciplina ad
+        JOIN ad.disciplina d
+        WHERE ad.aluno = a
+    )
+    WHERE EXISTS (
+        SELECT 1 FROM AlunoDisciplina ad WHERE ad.aluno = a
+    )
+""")
+void calcularCrAlunos();
 }

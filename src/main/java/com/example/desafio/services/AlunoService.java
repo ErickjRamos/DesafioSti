@@ -7,8 +7,10 @@ import java.util.List;
 public interface AlunoService {
 
     List<Aluno> calcularCrAlunos();
-
+/*
     void salvarCrAlunos();
 
     List<Aluno> calcularESalvarCrAlunos();
+
+ */
 }

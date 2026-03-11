@@ -30,7 +30,7 @@ public class DataLoader implements CommandLineRunner {
         List<AtributosNotaDTO> dados = lerCsvService.lerCsv("src/main/resources/notas.csv");
 
         persistirCsvService.importar(dados);
-        alunosCalculados = alunoService.calcularESalvarCrAlunos();
+        alunosCalculados = alunoService.calcularCrAlunos();
         cursosCalculados = cursoService.calcularESalvarCrCursos();
 
         System.out.println("------- O CR dos alunos é: -------");
