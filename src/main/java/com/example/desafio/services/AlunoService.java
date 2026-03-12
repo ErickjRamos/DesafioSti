@@ -1,16 +1,15 @@
 package com.example.desafio.services;
 
+import com.example.desafio.dto.ResponseAlunoDTO;
 import com.example.desafio.entities.Aluno;
 
 import java.util.List;
 
 public interface AlunoService {
 
-    List<Aluno> calcularCrAlunos();
-/*
-    void salvarCrAlunos();
+    void calcularCrAlunos();
 
-    List<Aluno> calcularESalvarCrAlunos();
 
- */
+    List<ResponseAlunoDTO> exibirAlunos();
+
 }

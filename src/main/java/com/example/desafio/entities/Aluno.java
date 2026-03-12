@@ -1,4 +1,5 @@
 package com.example.desafio.entities;
+
 import jakarta.persistence.*;
 import lombok.*;
 

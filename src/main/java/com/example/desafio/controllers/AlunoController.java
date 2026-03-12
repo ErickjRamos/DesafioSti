@@ -1,7 +1,7 @@
 package com.example.desafio.controllers;
+
 import com.example.desafio.dto.ResponseAlunoDTO;
 import com.example.desafio.services.AlunoService;
-import com.example.desafio.services.impl.AlunoServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 public class AlunoController {
     private final AlunoService alunoService;
-/*
+
     @GetMapping("/alunos")
     public ResponseEntity<List<ResponseAlunoDTO>> exibirAlunos() {
         return ResponseEntity.ok(alunoService.exibirAlunos());
     }
-*/
 
 
 }

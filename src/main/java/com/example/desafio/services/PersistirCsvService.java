@@ -1,4 +1,5 @@
 package com.example.desafio.services;
+
 import com.example.desafio.dto.AtributosNotaDTO;
 import com.example.desafio.repositories.AlunoDisciplinaRepository;
 import com.example.desafio.repositories.AlunoRepository;
@@ -51,7 +52,7 @@ public class PersistirCsvService {
                 return d;
             });
 
-            Aluno aluno = alunos.computeIfAbsent(dto.getMatricula(), matricula-> {
+            Aluno aluno = alunos.computeIfAbsent(dto.getMatricula(), matricula -> {
                 Aluno a = new Aluno();
                 a.setMatricula(matricula);
                 return a;
