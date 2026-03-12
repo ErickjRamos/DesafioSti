@@ -29,7 +29,7 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Transactional(readOnly = true)
-    public List<ResponseCursoDTO> exibirCursos() {
+    public List<ResponseCursoDTO> buscarCursos() {
         return cursoRepository.findAll()
                 .stream()
                 .map(curso -> CursoMapper.converterParaDto(curso))

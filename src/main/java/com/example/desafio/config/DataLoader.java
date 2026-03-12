@@ -5,11 +5,7 @@ import com.example.desafio.dto.ResponseAlunoDTO;
 import com.example.desafio.dto.ResponseCursoDTO;
 import com.example.desafio.entities.Aluno;
 import com.example.desafio.entities.Curso;
-import com.example.desafio.services.AlunoService;
-import com.example.desafio.services.CursoService;
-import com.example.desafio.services.LerCsvService;
-import com.example.desafio.services.impl.LerCsvServiceImpl;
-import com.example.desafio.services.PersistirCsvService;
+import com.example.desafio.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,9 +15,9 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
-
-    private final LerCsvService lerCsvService;
-    private final PersistirCsvService persistirCsvService;
+    private final CsvService csvService;
+   // private final LerCsvService lerCsvService;
+   //private final PersistirCsvService persistirCsvService;
     private final AlunoService alunoService;
     private final CursoService cursoService;
 
@@ -29,15 +25,15 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         List<Aluno> alunosCalculados;
         List<Curso> cursosCalculados;
-        List<AtributosNotaDTO> dados = lerCsvService.lerCsv("src/main/resources/notas.csv");
+        List<AtributosNotaDTO> dados = csvService.lerCsv("src/main/resources/notas.csv");
 
-        persistirCsvService.importar(dados);
+        csvService.persistirCsv(dados);
 
         alunoService.calcularCrAlunos();
-        List<ResponseAlunoDTO> alunos = alunoService.exibirAlunos();//buscar alunos
+        List<ResponseAlunoDTO> alunos = alunoService.buscarAlunos();//buscar alunos
 
         cursoService.calcularCrCursos();
-        List<ResponseCursoDTO> cursos = cursoService.exibirCursos();//buscar alunos
+        List<ResponseCursoDTO> cursos = cursoService.buscarCursos();//buscar alunos
 
         System.out.println("------- O CR dos alunos é: -------");
         for (ResponseAlunoDTO aluno : alunos) {

@@ -17,7 +17,7 @@ public class CursoController {
     private final CursoService cursoService;
 
     @GetMapping("/cursos")
-    public ResponseEntity<List<ResponseCursoDTO>> exibirCursos() {
-        return ResponseEntity.ok(cursoService.exibirCursos());
+    public ResponseEntity<List<ResponseCursoDTO>> buscarCursos() {
+        return ResponseEntity.ok(cursoService.buscarCursos());
     }
 }

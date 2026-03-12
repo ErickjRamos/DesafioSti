@@ -11,7 +11,7 @@ public interface CursoService {
 
     void calcularCrCursos();
 
-    List<ResponseCursoDTO> exibirCursos();
+    List<ResponseCursoDTO> buscarCursos();
 
     void salvarCursos(Collection<Curso> cursos);
 }

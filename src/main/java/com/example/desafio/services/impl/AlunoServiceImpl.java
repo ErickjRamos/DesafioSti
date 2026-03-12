@@ -30,7 +30,7 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Transactional(readOnly = true)
-    public List<ResponseAlunoDTO> exibirAlunos() {
+    public List<ResponseAlunoDTO> buscarAlunos() {
         return alunoRepository.findAll()
                 .stream()
                 .map(aluno -> AlunoMapper.converterParaDto(aluno))

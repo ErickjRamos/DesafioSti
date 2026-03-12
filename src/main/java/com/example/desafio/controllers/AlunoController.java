@@ -17,8 +17,8 @@ public class AlunoController {
     private final AlunoService alunoService;
 
     @GetMapping("/alunos")
-    public ResponseEntity<List<ResponseAlunoDTO>> exibirAlunos() {
-        return ResponseEntity.ok(alunoService.exibirAlunos());
+    public ResponseEntity<List<ResponseAlunoDTO>> buscarAlunos() {
+        return ResponseEntity.ok(alunoService.buscarAlunos());
     }
 
 

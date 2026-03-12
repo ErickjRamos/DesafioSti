@@ -11,7 +11,7 @@ public interface AlunoService {
     void calcularCrAlunos();
 
 
-    List<ResponseAlunoDTO> exibirAlunos();
+    List<ResponseAlunoDTO> buscarAlunos();
 
     void salvarAlunos(Collection<Aluno> alunos);
 }
