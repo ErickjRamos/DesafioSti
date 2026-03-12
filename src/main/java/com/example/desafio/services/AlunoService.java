@@ -3,6 +3,7 @@ package com.example.desafio.services;
 import com.example.desafio.dto.ResponseAlunoDTO;
 import com.example.desafio.entities.Aluno;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface AlunoService {
@@ -12,4 +13,5 @@ public interface AlunoService {
 
     List<ResponseAlunoDTO> exibirAlunos();
 
+    void salvarAlunos(Collection<Aluno> alunos);
 }

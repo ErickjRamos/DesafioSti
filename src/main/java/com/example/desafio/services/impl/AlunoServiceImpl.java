@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,5 +36,11 @@ public class AlunoServiceImpl implements AlunoService {
                 .map(aluno -> AlunoMapper.converterParaDto(aluno))
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void salvarAlunos(Collection<Aluno> alunos) {
+        alunoRepository.saveAll(alunos);
+    }
+
 }
 

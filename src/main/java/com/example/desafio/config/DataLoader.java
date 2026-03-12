@@ -8,6 +8,7 @@ import com.example.desafio.entities.Curso;
 import com.example.desafio.services.AlunoService;
 import com.example.desafio.services.CursoService;
 import com.example.desafio.services.LerCsvService;
+import com.example.desafio.services.impl.LerCsvServiceImpl;
 import com.example.desafio.services.PersistirCsvService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -33,10 +34,10 @@ public class DataLoader implements CommandLineRunner {
         persistirCsvService.importar(dados);
 
         alunoService.calcularCrAlunos();
-        List<ResponseAlunoDTO> alunos = alunoService.exibirAlunos();
+        List<ResponseAlunoDTO> alunos = alunoService.exibirAlunos();//buscar alunos
 
         cursoService.calcularCrCursos();
-        List<ResponseCursoDTO> cursos = cursoService.exibirCursos();
+        List<ResponseCursoDTO> cursos = cursoService.exibirCursos();//buscar alunos
 
         System.out.println("------- O CR dos alunos é: -------");
         for (ResponseAlunoDTO aluno : alunos) {

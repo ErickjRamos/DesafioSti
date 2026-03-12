@@ -1,10 +1,6 @@
 package com.example.desafio.services;
 
 import com.example.desafio.dto.AtributosNotaDTO;
-import com.example.desafio.repositories.AlunoDisciplinaRepository;
-import com.example.desafio.repositories.AlunoRepository;
-import com.example.desafio.repositories.CursoRepository;
-import com.example.desafio.repositories.DisciplinaRepository;
 import com.example.desafio.entities.Aluno;
 import com.example.desafio.entities.AlunoDisciplina;
 import com.example.desafio.entities.Curso;
@@ -22,10 +18,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PersistirCsvService {
 
-    private final CursoRepository cursoRepository;
-    private final DisciplinaRepository disciplinaRepository;
-    private final AlunoRepository alunoRepository;
-    private final AlunoDisciplinaRepository alunoDisciplinaRepository;
+    private final AlunoService alunoService;
+    private final DisciplinaService disciplinaService;
+    private final CursoService cursoService;
+    private final AlunoDisciplinaService alunoDisciplinaService;
 
     @Transactional
     public void importar(List<AtributosNotaDTO> dados) {
@@ -67,9 +63,9 @@ public class PersistirCsvService {
 
             historicos.add(ad);
         }
-        alunoRepository.saveAll(alunos.values());
-        disciplinaRepository.saveAll(disciplinas.values());
-        cursoRepository.saveAll(cursos.values());
-        alunoDisciplinaRepository.saveAll(historicos);
+        alunoService.salvarAlunos(alunos.values());
+        disciplinaService.salvarDisciplinas(disciplinas.values());
+        cursoService.salvarCursos(cursos.values());
+        alunoDisciplinaService.salvarAlunoDisciplinas(historicos);
     }
 }

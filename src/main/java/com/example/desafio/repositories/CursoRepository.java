@@ -12,13 +12,13 @@ public interface CursoRepository extends JpaRepository<Curso, Long> {
 
     @Modifying
     @Query("""
-        UPDATE Curso c
-        SET c.MediaCr = (
-            SELECT ROUND(AVG(DISTINCT a.cr))
-            FROM AlunoDisciplina ad
-            JOIN ad.aluno a
-            WHERE ad.disciplina.curso = c
-        )
+            UPDATE Curso c
+            SET c.MediaCr = (
+                SELECT ROUND(AVG(DISTINCT a.cr))
+                FROM AlunoDisciplina ad
+                JOIN ad.aluno a
+                WHERE ad.disciplina.curso = c
+            )
         """)
     void calcularCrCursos();
 
